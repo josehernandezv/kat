@@ -20,11 +20,6 @@ export default function Index() {
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
       <h1>Welcome to Remix</h1>
       <p>{JSON.stringify(competitors, null, 2)}</p>
-      <form action="/logout" method="post">
-        <button type="submit" className="btn">
-          Logout
-        </button>
-      </form>
     </div>
   );
 }
