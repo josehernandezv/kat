@@ -1,8 +1,18 @@
-import { NavLink, Outlet } from "@remix-run/react";
 import { useState } from "react";
-
+import { NavLink, Outlet } from "@remix-run/react";
 import { Logo } from "~/components/Logo";
 import { Navbar } from "~/components/Navbar";
+import { json } from "@remix-run/node";
+import { requireSession } from "~/utils/session";
+import { createServerClient } from "~/utils/supabase.server";
+import type { LoaderArgs } from "@remix-run/node";
+
+export async function loader({ request }: LoaderArgs) {
+  const response = new Response();
+  const supabaseClient = createServerClient({ request, response });
+  const session = await requireSession(response, supabaseClient);
+  return json(session);
+}
 
 export default function AppLayout() {
   const [drawerOpen, setDrawerOpen] = useState(false);

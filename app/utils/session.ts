@@ -1,5 +1,5 @@
 import { redirect } from "@remix-run/node";
-import type { SupabaseClient } from "utils/supabase.server";
+import type { SupabaseClient } from "~/utils/supabase.server";
 
 export async function requireSession(
   response: Response,

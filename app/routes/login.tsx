@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form } from "@remix-run/react";
 import type { ActionArgs } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
-import { createServerClient } from "utils/supabase.server";
+import { createServerClient } from "~/utils/supabase.server";
 
 export const action = async ({ request }: ActionArgs) => {
   const form = await request.formData();

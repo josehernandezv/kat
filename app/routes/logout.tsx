@@ -1,6 +1,6 @@
 import type { ActionArgs } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
-import { createServerClient } from "utils/supabase.server";
+import { createServerClient } from "~/utils/supabase.server";
 
 export const action = async ({ request }: ActionArgs) => {
   const response = new Response();
