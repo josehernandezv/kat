@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink, Outlet } from "@remix-run/react";
+import { NavLink, Outlet, useOutletContext } from "@remix-run/react";
 import { Logo } from "~/components/Logo";
 import { Navbar } from "~/components/Navbar";
 import { json } from "@remix-run/node";
@@ -28,7 +28,7 @@ export default function AppLayout() {
       <div className="drawer-content">
         <Navbar onClickMenu={() => setDrawerOpen(true)} />
         <div className="flex flex-1 flex-col items-center justify-center">
-          <Outlet />
+          <Outlet context={useOutletContext()} />
         </div>
       </div>
       <div className="drawer-side">

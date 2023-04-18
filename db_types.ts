@@ -4,46 +4,109 @@ export type Json =
   | boolean
   | null
   | { [key: string]: Json }
-  | Json[];
+  | Json[]
 
 export interface Database {
   public: {
     Tables: {
+      categories: {
+        Row: {
+          age_division: Database["public"]["Enums"]["ages_divisions"] | null
+          gender: Database["public"]["Enums"]["genders"] | null
+          id: number
+          weight: string | null
+        }
+        Insert: {
+          age_division?: Database["public"]["Enums"]["ages_divisions"] | null
+          gender?: Database["public"]["Enums"]["genders"] | null
+          id?: number
+          weight?: string | null
+        }
+        Update: {
+          age_division?: Database["public"]["Enums"]["ages_divisions"] | null
+          gender?: Database["public"]["Enums"]["genders"] | null
+          id?: number
+          weight?: string | null
+        }
+      }
       competitors: {
         Row: {
-          created_at: string | null;
-          first_name: string | null;
-          gender: string | null;
-          id: number;
-          last_name: string | null;
-        };
+          category_id: number | null
+          country_id: number | null
+          created_at: string | null
+          first_name: string | null
+          id: number
+          last_name: string | null
+          notes: string | null
+        }
         Insert: {
-          created_at?: string | null;
-          first_name?: string | null;
-          gender?: string | null;
-          id?: number;
-          last_name?: string | null;
-        };
+          category_id?: number | null
+          country_id?: number | null
+          created_at?: string | null
+          first_name?: string | null
+          id?: number
+          last_name?: string | null
+          notes?: string | null
+        }
         Update: {
-          created_at?: string | null;
-          first_name?: string | null;
-          gender?: string | null;
-          id?: number;
-          last_name?: string | null;
-        };
-      };
-    };
+          category_id?: number | null
+          country_id?: number | null
+          created_at?: string | null
+          first_name?: string | null
+          id?: number
+          last_name?: string | null
+          notes?: string | null
+        }
+      }
+      countries: {
+        Row: {
+          continent: Database["public"]["Enums"]["continents"] | null
+          flag_emoji: string | null
+          id: number
+          iso2: string
+          iso3: string | null
+          local_name: string | null
+          name: string | null
+        }
+        Insert: {
+          continent?: Database["public"]["Enums"]["continents"] | null
+          flag_emoji?: string | null
+          id?: number
+          iso2: string
+          iso3?: string | null
+          local_name?: string | null
+          name?: string | null
+        }
+        Update: {
+          continent?: Database["public"]["Enums"]["continents"] | null
+          flag_emoji?: string | null
+          id?: number
+          iso2?: string
+          iso3?: string | null
+          local_name?: string | null
+          name?: string | null
+        }
+      }
+    }
     Views: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Functions: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Enums: {
-      [_ in never]: never;
-    };
+      ages_divisions: "Senior" | "Sub 21" | "Junior" | "Cadete" | "Sub 14"
+      continents:
+        | "África"
+        | "Antártida"
+        | "Asia"
+        | "Europa"
+        | "Oceanía"
+        | "América"
+      genders: "Male" | "Female"
+    }
     CompositeTypes: {
-      [_ in never]: never;
-    };
-  };
+      [_ in never]: never
+    }
+  }
 }
