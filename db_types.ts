@@ -34,6 +34,7 @@ export interface Database {
           category_id: number | null
           country_id: number | null
           created_at: string | null
+          created_by: string
           first_name: string | null
           id: number
           last_name: string | null
@@ -43,6 +44,7 @@ export interface Database {
           category_id?: number | null
           country_id?: number | null
           created_at?: string | null
+          created_by?: string
           first_name?: string | null
           id?: number
           last_name?: string | null
@@ -52,6 +54,7 @@ export interface Database {
           category_id?: number | null
           country_id?: number | null
           created_at?: string | null
+          created_by?: string
           first_name?: string | null
           id?: number
           last_name?: string | null

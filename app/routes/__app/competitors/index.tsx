@@ -1,6 +1,6 @@
 import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData, useNavigate } from "@remix-run/react";
 import { requireSession } from "~/utils/session";
 import { createServerClient } from "~/utils/supabase.server";
 import { HiPlus } from "react-icons/hi2";
@@ -25,7 +25,7 @@ export async function loader({ request }: LoaderArgs) {
 
 export default function CompetitorsIndexRoute() {
   const { competitors } = useLoaderData<typeof loader>();
-  console.log(competitors);
+  const navigate = useNavigate();
   return (
     <>
       <header className="flex flex-col gap-4 pb-4 sm:flex-row sm:items-center sm:justify-between">
@@ -54,7 +54,11 @@ export default function CompetitorsIndexRoute() {
           </thead>
           <tbody>
             {competitors.map((competitor) => (
-              <tr key={competitor.id}>
+              <tr
+                key={competitor.id}
+                className="hover cursor-pointer"
+                onClick={() => navigate(`${competitor.id}`)}
+              >
                 <td>{competitor.first_name}</td>
                 <td>{competitor.last_name}</td>
                 <td>

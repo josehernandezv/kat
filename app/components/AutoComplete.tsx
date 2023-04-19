@@ -9,6 +9,7 @@ interface AutoCompleteProps<T extends { id: number }> {
   entity: string;
   displayValue(item: T): string;
   filterValue(item: T, query: string): boolean;
+  defaultValueId?: number | string | null;
 }
 
 export function AutoComplete<T extends { id: number }>({
@@ -16,6 +17,7 @@ export function AutoComplete<T extends { id: number }>({
   entity,
   filterValue,
   displayValue,
+  defaultValueId,
 }: AutoCompleteProps<T>) {
   const [query, setQuery] = useState("");
   const context = useOutletContext<{
@@ -35,8 +37,15 @@ export function AutoComplete<T extends { id: number }>({
   const filteredItems =
     query === "" ? items : items.filter((item) => filterValue(item, query));
 
+  const defaultValue = defaultValueId
+    ? items.find((item) => item.id === defaultValueId)
+    : undefined;
+
+  // if there is a default value delay the render until the items are loaded
+  if (defaultValueId && !items.length) return null;
+
   return (
-    <Combobox name={name}>
+    <Combobox name={name} defaultValue={defaultValue}>
       <Combobox.Input
         className="input-bordered input w-full max-w-xs"
         onChange={(event) => setQuery(event.target.value)}
