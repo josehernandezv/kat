@@ -11,8 +11,25 @@ const competitorSchema = z.object({
   country_id: z.number().optional(),
 });
 
-export function validateCompetitor(data: { [k: string]: FormDataEntryValue }) {
+const loginCredentialsSchema = z.object({
+  email: z.string().email({
+    message: "El email no es válido",
+  }),
+  password: z.string().min(8, {
+    message: "La contraseña debe tener al menos 8 caracteres",
+  }),
+});
+
+type FormFields = {
+  [k: string]: FormDataEntryValue;
+};
+
+export function validateCompetitor(data: FormFields) {
   return competitorSchema.safeParse(data);
+}
+
+export function validateLoginCredentials(data: FormFields) {
+  return loginCredentialsSchema.safeParse(data);
 }
 
 // type CompetitorFields = z.infer<typeof competitorSchema>;
