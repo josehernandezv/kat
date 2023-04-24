@@ -9,6 +9,7 @@ const competitorSchema = z.object({
   }),
   category_id: z.number().optional(),
   country_id: z.number().optional(),
+  notes: z.string().optional(),
 });
 
 const loginCredentialsSchema = z.object({

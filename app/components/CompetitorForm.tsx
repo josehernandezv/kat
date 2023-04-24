@@ -100,6 +100,16 @@ export function CompetitorForm({ competitor }: CompetitorFormProps) {
           defaultValueId={competitor?.country_id}
         />
       </div>
+      <div className="form-control w-full max-w-xs pb-4">
+        <label className="label">
+          <span className="label-text">Notas</span>
+        </label>
+        <textarea
+          name="notes"
+          className="textarea-bordered textarea h-32 w-full max-w-xs"
+          defaultValue={competitor?.notes || ""}
+        />
+      </div>
       <div>
         <button type="submit" className="btn">
           {competitor ? "Guardar cambios" : " Crear competidor"}
